@@ -1,20 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-typedef struct e{
-	char nombreMaquina[31];
-	int tension;
-	int corriente;
-} consumo;
-
-void MostrarMenu();
-consumo* IngresarDatos(consumo *m, int *c);
-void MaxTension(consumo *m, int c);
-void MaxCorriente(consumo *m, int c);
-void BuscarMaquina(consumo *m, int c);
-void LimpiarBuffer();
-
+#include "consumo.h"
 
 int main(int argc, char *argv[]) {
 	consumo *maquina = NULL;
