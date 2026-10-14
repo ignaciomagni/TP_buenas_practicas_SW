@@ -42,6 +42,10 @@ int main(int argc, char *argv[]) {
 		
 	} while(opcion != OPCION_SALIR);
 	
+	// Liberacion de memoria dinamica asignada al finalizar el programa
+	if (maquina != NULL){
+		free(maquina);
+	} // if
 	
 	return 0;
 } //main
@@ -127,7 +131,11 @@ void MaxTension(consumo *m, int c){
 	} // for
 	
 	printf("\nLa tension mas alta la tiene %s y es de %d\n", m[lugarTensionAlta1].nombreMaquina, m[lugarTensionAlta1].tension);
-	printf("La segunda tension mas alta la tiene %s y es de %d\n", m[lugarTensionAlta2].nombreMaquina, m[lugarTensionAlta2].tension);
+	if (lugarTensionAlta2 != -1 && c > 1) {
+		printf("La segunda tension mas alta la tiene %s y es de %d\n", m[lugarTensionAlta2].nombreMaquina, m[lugarTensionAlta2].tension);
+	} else {
+		printf("No hay suficientes registros para una segunda tension alta.\n");
+	} // if-else
 	
 } // MaxTension
 
@@ -157,7 +165,11 @@ void MaxCorriente(consumo *m, int c){
 	} // for
 	
 	printf("\nLa corriente mas alta la tiene %s y es de %d\n", m[lugarCorrienteAlta1].nombreMaquina, m[lugarCorrienteAlta1].corriente);
-	printf("La segunda corriente mas alta la tiene %s y es de %d\n", m[lugarCorrienteAlta2].nombreMaquina, m[lugarCorrienteAlta2].corriente);
+	if (lugarCorrienteAlta2 != -1 && c > 1) {
+		printf("La segunda corriente mas alta la tiene %s y es de %d\n", m[lugarCorrienteAlta2].nombreMaquina, m[lugarCorrienteAlta2].corriente);
+	} else {
+		printf("No hay suficientes registros para una segunda corriente alta.\n");
+	} // if-else
 	
 } // MaxCorriente
 
@@ -192,5 +204,6 @@ void BuscarMaquina(consumo *m, int c){
 } // BuscarMaquina
 
 void LimpiarBuffer(){
-	rewind(stdin);
+	int c;
+	while ((c = getchar()) != '\n' && c != EOF);
 } // LimpiarBuffer
