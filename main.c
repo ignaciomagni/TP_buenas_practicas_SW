@@ -15,10 +15,10 @@ int main(int argc, char *argv[]) {
 			printf("\nIngrese la opcion: ");
 			scanf("%d", &opcion);
 			
-			if(opcion <=0 || opcion >5){
-				printf("\nOpcion incorrecta ingrese un numero del 1 al 5\n");
+			if(opcion <=0 || opcion > OPCION_SALIR){
+				printf("\nOpcion incorrecta ingrese un numero del 1 al %d\n", OPCION_SALIR);
 			}
-		} while(opcion <=0 || opcion >5);
+		} while(opcion <=0 || opcion > OPCION_SALIR);
 		LimpiarBuffer();
 		
 		switch(opcion){
@@ -39,7 +39,7 @@ int main(int argc, char *argv[]) {
 				break;
 		}
 		
-	} while(opcion != 5);
+	} while(opcion != OPCION_SALIR);
 	
 	
 	return 0;
@@ -55,7 +55,7 @@ void MostrarMenu(){
 }
 	
 consumo* IngresarDatos(consumo *m, int *c){
-	char nombre[31];
+	char nombre[MAX_NOMBRE];
 	int cantidad = *c + 1;
 	int nTension, nCorriente;
 	
@@ -67,7 +67,7 @@ consumo* IngresarDatos(consumo *m, int *c){
 	m = temporal;
 	
 	printf("\nIngrese el nombre de la maquina: ");
-	fgets(nombre, 31, stdin); 
+	fgets(nombre, MAX_NOMBRE, stdin); 
 	nombre[strlen(nombre)-1]='\0';
 	strcpy(m[*c].nombreMaquina, nombre);
 	
@@ -162,7 +162,7 @@ void MaxCorriente(consumo *m, int c){
 
 void BuscarMaquina(consumo *m, int c){
 	int i = 0;
-	char buscado[31];
+	char buscado[MAX_NOMBRE];
 	int encontrado = 0;
 	
 	if (c == 0 || m == NULL) {
@@ -171,7 +171,7 @@ void BuscarMaquina(consumo *m, int c){
 	}
 	
 	printf("\nIngrese el nombre de la maquina a buscar: ");
-	fgets(buscado, 31, stdin);
+	fgets(buscado, MAX_NOMBRE, stdin);
 	
 	buscado[strlen(buscado)-1] = '\0';
 	printf("Buscando: %s", buscado);

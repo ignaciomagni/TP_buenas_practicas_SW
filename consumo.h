@@ -1,6 +1,9 @@
 #ifndef CONSUMO_H
 #define CONSUMO_H
 
+#define MAX_NOMBRE 31
+#define OPCION_SALIR 5
+
 typedef struct {
 	char nombreMaquina[31];
 	int tension;
